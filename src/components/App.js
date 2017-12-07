@@ -8,6 +8,13 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 export default class App extends React.Component {
   constructor(props){
     super(props)
+    this.state = {
+
+    }
+  }
+
+  handlePlaceSubmit(place){
+    console.log(place);
   }
 
   render() {
@@ -15,7 +22,7 @@ export default class App extends React.Component {
       <MuiThemeProvider>
         <div style={ { textAlign: 'center', cursor: 'none' } }>
           <h1>緯度経度検索</h1>
-          <SearchForm />
+          <SearchForm onSubmit={place => this.handlePlaceSubmit(place)}/>
           <GeocodeResult />
         </div>
       </MuiThemeProvider>
