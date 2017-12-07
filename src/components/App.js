@@ -10,7 +10,7 @@ export default class App extends React.Component {
   }
 
   handleOnChange(name){
-    this.setState({name: name})
+    this.setState({ name })
   }
 
   render() {
