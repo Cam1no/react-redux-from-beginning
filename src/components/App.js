@@ -9,12 +9,12 @@ export default class App extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-
+      place: ''
     }
   }
 
   handlePlaceSubmit(place){
-    console.log(place);
+    this.setState({place})
   }
 
   render() {
@@ -23,7 +23,11 @@ export default class App extends React.Component {
         <div style={ { textAlign: 'center', cursor: 'none' } }>
           <h1>緯度経度検索</h1>
           <SearchForm onSubmit={place => this.handlePlaceSubmit(place)}/>
-          <GeocodeResult />
+          <GeocodeResult
+            address={this.state.address}
+            lat={this.state.lat}
+            lng={this.state.lng}
+          />
         </div>
       </MuiThemeProvider>
     );
