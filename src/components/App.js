@@ -1,11 +1,11 @@
 import React, {PropTypes} from 'react';
 import ReactDOM from 'react-dom';
 
-const App = (props) => {
-  return (<div>MyComponent</div>);
+export default class App extends React.Component {
+  render() {
+    return (<div>HelloWorld</div>);
+  }
 }
 
 App.propTypes = {
 };
-
-export default App;
