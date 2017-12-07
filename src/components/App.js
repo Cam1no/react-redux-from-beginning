@@ -9,21 +9,19 @@ export default class App extends React.Component {
     }
   }
 
-  handleMouseOver() {
-    this.setState({ name: 'Jaken'})
+  handleOnChange(name){
+    this.setState({name: name})
   }
 
-  handleMouseOut() {
-    this.setState({name: "Hoooooooooooooooooooooo"})
-  }
   render() {
     return (
-      <span
-        onMouseOver={() => this.handleMouseOver()}
-        onMouseOut={() => this.handleMouseOut()}
-      >
+      <div>
+        <input
+          type="text" value={this.state.name}
+          onChange={(e) => this.handleOnChange(e.target.value)}
+        />
         <Greeting name={this.state.name}/>
-      </span>
+      </div>
     );
   }
 }
