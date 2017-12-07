@@ -1,26 +1,22 @@
 import React from 'react';
-import Greeting from './Greeting';
+import GeocodeResult from './GeocodeResult';
+import SearchForm from './SearchForm';
+
+import  PropTypes from 'prop-types';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import { AppBar, MenuItem, Drawer } from 'material-ui';
 
 export default class App extends React.Component {
   constructor(props){
     super(props)
-    this.state = {
-      name: "Boooooooob"
-    }
-  }
-
-  handleOnChange(name){
-    this.setState({ name })
   }
 
   render() {
     return (
-      <div>
-        <input
-          type="text" value={this.state.name}
-          onChange={(e) => this.handleOnChange(e.target.value)}
-        />
-        <Greeting name={this.state.name}/>
+      <div style={ { textAlign: 'center', cursor: 'none' } }>
+        <h1>緯度経度検索</h1>
+        <SearchForm />
+        <GeocodeResult />
       </div>
     );
   }
