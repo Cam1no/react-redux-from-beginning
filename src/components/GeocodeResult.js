@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 export const GeocodeResult = ({ address, lat, lng }) => {
   return (
-    <ul>
+    <ul style={{ listStyle: 'none' }}>
       <li>住所: {address}</li>
       <li>緯度: {lat}</li>
       <li>経度: {lng}</li>
