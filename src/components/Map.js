@@ -6,6 +6,7 @@ const InnerMap = withGoogleMap(({ location, isMarkerShown }) => (
   <GoogleMap
     defaultZoom={16}
     defaultCenter={location}
+    center={location}
   >
     {isMarkerShown && <Marker position={location} />}
   </GoogleMap>
@@ -17,6 +18,7 @@ const Map = ({ location }) => (
     mapElement={<div style={{ height: `100%` }} />}
     location={location}
     isMarkerShown={true}
+    center={location}
   />
 );
 

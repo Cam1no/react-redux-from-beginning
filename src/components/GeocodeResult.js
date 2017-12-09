@@ -14,13 +14,7 @@ export const GeocodeResult = ({ address, lat, lng }) => {
 export default GeocodeResult;
 
 GeocodeResult.propTypes = {
-  address: PropTypes.string,
-  lat: PropTypes.number,
-  lng: PropTypes.number,
+  address: PropTypes.string.isRequired,
+  lat: PropTypes.number.isRequired,
+  lng: PropTypes.number.isRequired,
 };
-
-GeocodeResult.defaultProps = {
-  address: '',
-  lat: 0,
-  lng: 0,
-}
