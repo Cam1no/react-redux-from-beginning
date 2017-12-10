@@ -3,6 +3,7 @@ import GeocodeResult from './GeocodeResult';
 import SearchForm from './SearchForm';
 import Map from './Map';
 import { geocode } from '../domain/Geocoder'
+import { searchHotelByLocation } from '../domain/HotelRepository'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Grid from 'material-ui/Grid';
 import HotelsTable from './HotelsTable'
@@ -41,7 +42,7 @@ export default class App extends React.Component {
         switch (status) {
           case 'OK':{
             this.setState({ address, location});
-            break;
+            return searchHotelByLocation(location);
           }
           case 'ZERO_RESULTS': {
             this.setErrorMessage('結果が見つかりませんでした');
@@ -51,6 +52,10 @@ export default class App extends React.Component {
             this.setErrorMessage('エラーが発生しました');
           }
         }
+        return [];
+      })
+      .then((hotels) => {
+        this.setState({ hotels })
       })
   }
 
