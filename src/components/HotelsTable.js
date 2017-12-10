@@ -10,7 +10,7 @@ export const HotelsTable = ({ hotels }) => {
       </thead>
       <tbody>
         {hotels.map(hotel => {
-          return <HotelsRow hotel={hotel}/>;
+          return <HotelsRow key={hotel.id} hotel={hotel}/>;
         })}
       </tbody>
     </table>

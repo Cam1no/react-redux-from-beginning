@@ -18,9 +18,9 @@ export default class App extends React.Component {
         lng: 139.745433,
       },
       hotels: [
-        { name: 'ホテルオークラ'},
-        { name: 'アパホテル'},
-        { name: 'ロワジールホテル'},
+        { id: 12, name: 'ホテルオークラ', url: 'http://google.com'},
+        { id: 1212, name: 'アパホテル', url: 'http://google.com'},
+        { id: 1243, name: 'ロワジールホテル', url: 'http://google.com'},
       ],
     }
   }
@@ -70,6 +70,7 @@ export default class App extends React.Component {
                 <Map location={ this.state.location }/>
               </Grid>
               <Grid item xs={6}>
+                <h2>ホテル検索結果</h2>
                 <HotelsTable hotels={this.state.hotels}/>
               </Grid>
             </Grid>
