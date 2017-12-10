@@ -4,6 +4,8 @@ import SearchForm from './SearchForm';
 import Map from './Map';
 import { geocode } from '../domain/Geocoder'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import Grid from 'material-ui/Grid';
+import HotelsTable from './HotelsTable'
 
 export default class App extends React.Component {
   constructor(props){
@@ -15,6 +17,11 @@ export default class App extends React.Component {
         lat: 35.658581,
         lng: 139.745433,
       },
+      hotels: [
+        { name: 'ホテルオークラ'},
+        { name: 'アパホテル'},
+        { name: 'ロワジールホテル'},
+      ],
     }
   }
 
@@ -57,7 +64,16 @@ export default class App extends React.Component {
             address={this.state.address}
             location={this.state.location}
           />
-          <Map location={ this.state.location }/>
+          <div style={{width: '1000px', margin: 'auto'}}>
+            <Grid container>
+              <Grid item xs={6}>
+                <Map location={ this.state.location }/>
+              </Grid>
+              <Grid item xs={6}>
+                <HotelsTable hotels={this.state.hotels}/>
+              </Grid>
+            </Grid>
+          </div>
         </div>
       </MuiThemeProvider>
     );
