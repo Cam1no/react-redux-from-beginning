@@ -17,10 +17,12 @@ export const searchHotelByLocation = (location) => {
         const data = results.data;
         return data.hotels.map((hotel) => {
           const hotelBasicInfo = hotel.hotel[0].hotelBasicInfo;
+          console.log(hotelBasicInfo);
           return {
             id: hotelBasicInfo.hotelNo,
             name: hotelBasicInfo.hotelName,
             url: hotelBasicInfo.hotelInformationUrl,
+            minPrice: hotelBasicInfo.hotelMinCharge
           }
         })
       }

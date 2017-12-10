@@ -6,7 +6,7 @@ export const HotelsTable = ({ hotels }) => {
   return (
     <table>
       <thead>
-        <tr><th>ホテル名</th></tr>
+        <tr><th>ホテル名</th><th>料金</th></tr>
       </thead>
       <tbody>
         {hotels.map(hotel => {

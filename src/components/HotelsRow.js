@@ -5,6 +5,7 @@ export const HotelsRow = ({ hotel }) => {
   return (
     <tr>
       <td><a href={hotel.url} target='_blank'>{hotel.name}</a></td>
+      <td>{hotel.minPrice}</td>
     </tr>
   );
 }

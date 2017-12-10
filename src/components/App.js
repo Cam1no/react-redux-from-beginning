@@ -18,9 +18,9 @@ export default class App extends React.Component {
         lng: 139.745433,
       },
       hotels: [
-        { id: 12, name: 'ホテルオークラ', url: 'http://google.com'},
-        { id: 1212, name: 'アパホテル', url: 'http://google.com'},
-        { id: 1243, name: 'ロワジールホテル', url: 'http://google.com'},
+        { id: 12, name: 'ホテルオークラ', url: 'http://google.com', minPrice: 0},
+        { id: 1212, name: 'アパホテル', url: 'http://google.com', minPrice: 0},
+        { id: 1243, name: 'ロワジールホテル', url: 'http://google.com', minPrice: 0},
       ],
     }
   }
