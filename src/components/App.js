@@ -4,7 +4,6 @@ import SearchForm from './SearchForm';
 import Map from './Map';
 import { geocode } from '../domain/Geocoder'
 import { searchHotelByLocation } from '../domain/HotelRepository'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Grid from 'material-ui/Grid';
 import HotelsTable from './HotelsTable'
 
@@ -61,27 +60,25 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <MuiThemeProvider>
-        <div style={ { textAlign: 'center', cursor: 'none' } }>
-          <h1>緯度経度検索</h1>
-          <SearchForm onSubmit={place => this.handlePlaceSubmit(place)}/>
-          <GeocodeResult
-            address={this.state.address}
-            location={this.state.location}
-          />
-          <div style={{width: '1000px', margin: 'auto'}}>
-            <Grid container>
-              <Grid item xs={6}>
-                <Map location={ this.state.location }/>
-              </Grid>
-              <Grid item xs={6}>
-                <h2>ホテル検索結果</h2>
-                <HotelsTable hotels={this.state.hotels}/>
-              </Grid>
+      <div style={ { textAlign: 'center', cursor: 'none' } }>
+        <h1>緯度経度検索</h1>
+        <SearchForm onSubmit={place => this.handlePlaceSubmit(place)}/>
+        <GeocodeResult
+          address={this.state.address}
+          location={this.state.location}
+        />
+        <div style={{width: '1000px', margin: 'auto'}}>
+          <Grid container>
+            <Grid item xs={6}>
+              <Map location={ this.state.location }/>
             </Grid>
-          </div>
+            <Grid item xs={6}>
+              <h2>ホテル検索結果</h2>
+              <HotelsTable hotels={this.state.hotels}/>
+            </Grid>
+          </Grid>
         </div>
-      </MuiThemeProvider>
+      </div>
     );
   }
 }
