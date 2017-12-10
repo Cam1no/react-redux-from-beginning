@@ -13,7 +13,6 @@ export const searchHotelByLocation = (location) => {
     axios
       .get(RAKUTEN_HOTEL_ENDPOINT, { params })
       .then((results) => {
-        const status = results.status;
         const data = results.data;
         return data.hotels.map((hotel) => {
           const hotelBasicInfo = hotel.hotel[0].hotelBasicInfo;
@@ -22,7 +21,8 @@ export const searchHotelByLocation = (location) => {
             id: hotelBasicInfo.hotelNo,
             name: hotelBasicInfo.hotelName,
             url: hotelBasicInfo.hotelInformationUrl,
-            minPrice: hotelBasicInfo.hotelMinCharge
+            minPrice: hotelBasicInfo.hotelMinCharge,
+            thumbnail: hotelBasicInfo.hotelThumbnailUrl,
           }
         })
       }
