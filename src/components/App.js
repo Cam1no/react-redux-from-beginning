@@ -14,19 +14,23 @@ export default class App extends React.Component {
     super(props)
     this.state = {
       place: '東京タワー',
-      lat: 35.658581,
-      lng: 139.745433,
+      address: '',
+      location: {
+        lat: 35.658581,
+        lng: 139.745433,
+      },
     }
   }
 
   setErrorMessage(message) {
     this.this.setState({
       address: message,
-      lat: 0,
-      lng: 0,
+      location: {
+        lat: 0,
+        lng: 0,
+      },
     })
   }
-
 
   handlePlaceSubmit(place){
     axios
@@ -39,8 +43,7 @@ export default class App extends React.Component {
             const location = result.geometry.location;
             this.setState({
               address: result.formatted_address,
-              lat: location.lat,
-              lng: location.lng,
+              location: location,
             });
             break;
           }
@@ -66,10 +69,9 @@ export default class App extends React.Component {
           <SearchForm onSubmit={place => this.handlePlaceSubmit(place)}/>
           <GeocodeResult
             address={this.state.address}
-            lat={this.state.lat}
-            lng={this.state.lng}
+            location={this.state.location}
           />
-          <Map location={ { lat: this.state.lat, lng: this.state.lng } }/>
+          <Map location={ this.state.location }/>
         </div>
       </MuiThemeProvider>
     );
