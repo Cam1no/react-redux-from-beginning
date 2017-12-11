@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/App';
-import SearchPage from './components/SearchPage';
+import SearchPage from './containers/SearchPage';
 import registerServiceWorker from './registerServiceWorker';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import { createStore } from 'redux';

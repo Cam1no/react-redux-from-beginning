@@ -1,13 +1,12 @@
 import React from 'react';
-import GeocodeResult from './GeocodeResult';
-import SearchForm from '../containers/SearchForm';
-import Map from './Map';
-import { geocode } from '../domain/Geocoder'
-import { searchHotelByLocation } from '../domain/HotelRepository'
+import GeocodeResult from '../components/GeocodeResult';
+import SearchForm from './SearchForm';
+import Map from '../components/Map';
 import Grid from 'material-ui/Grid';
-import HotelsTable from './HotelsTable'
+import HotelsTable from '../components/HotelsTable'
 import _ from 'lodash';
 import queryString from 'query-string';
+import { connect } from 'react-redux';
 
 const sortedHotels = (hotels, sortKey) => _.sortBy(hotels, h => h[sortKey]);
 
@@ -56,34 +55,11 @@ export class SearchPage extends React.Component {
     })
   }
 
-  handlePlaceSubmit(e){
-    e.preventDefault();
-    this.props.history.push(`/?place=${this.state.place}`);
-    this.startSearch(this.state.place);
-  }
+  // handlePlaceSubmit(e){
+  //   e.preventDefault();
+  //   this.props.history.push(`/?place=${this.state.place}`);
+  // }
 
-  startSearch(place){
-    geocode(place)
-      .then(({ status, address, location }) => {
-        switch (status) {
-          case 'OK':{
-            this.setState({ address, location});
-            return searchHotelByLocation(location);
-          }
-          case 'ZERO_RESULTS': {
-            this.setErrorMessage('結果が見つかりませんでした');
-            break;
-          }
-          default:{
-            this.setErrorMessage('エラーが発生しました');
-          }
-        }
-        return [];
-      })
-      .then((hotels) => {
-        this.setState({ hotels: sortedHotels(hotels, this.state.sortKey) })
-      })
-  }
 
   handleSortKeyChange(sortKey){
     console.log(sortKey);
@@ -95,17 +71,15 @@ export class SearchPage extends React.Component {
     return (
       <div style={ { textAlign: 'center'} }>
         <h1>ホテル検索</h1>
-        <SearchForm
-          onSubmit={(e) => this.handlePlaceSubmit(e)}
-        />
+        <SearchForm/>
         <GeocodeResult
-          address={this.state.address}
-          location={this.state.location}
+          address={this.props.geocodeResult.address}
+          location={this.props.geocodeResult.location}
         />
         <div style={{width: '100%', margin: 'auto'}}>
           <Grid container>
             <Grid item xs={6}>
-              <Map location={ this.state.location }/>
+              <Map location={ this.props.geocodeResult.location }/>
             </Grid>
             <Grid item xs={6}>
               <h2>ホテル検索結果</h2>
@@ -122,4 +96,8 @@ export class SearchPage extends React.Component {
   }
 }
 
-export default SearchPage;
+const mapStateToProps = state => ({
+  geocodeResult: state.geocodeResult,
+});
+
+export default connect(mapStateToProps)(SearchPage);
