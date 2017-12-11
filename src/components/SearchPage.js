@@ -7,12 +7,12 @@ import { searchHotelByLocation } from '../domain/HotelRepository'
 import Grid from 'material-ui/Grid';
 import HotelsTable from './HotelsTable'
 import _ from 'lodash';
+import queryString from 'query-string';
 
 const sortedHotels = (hotels, sortKey) => _.sortBy(hotels, h => h[sortKey]);
 
 export default class SearchPage extends React.Component {
   constructor(props){
-    console.log(props);
     super(props)
     this.state = {
       place: '東京タワー',
@@ -30,6 +30,14 @@ export default class SearchPage extends React.Component {
     }
   }
 
+  componentDidMount() {
+    const params = queryString.parse(this.props.location.search);
+    const place = params.place;
+    if (place && place.length > 0){
+      this.startSearch(place);
+    }
+  }
+
   setErrorMessage(message) {
     this.setState({
       address: message,
@@ -42,6 +50,10 @@ export default class SearchPage extends React.Component {
 
   handlePlaceSubmit(place){
     this.props.history.push(`/?query=${place}`);
+    this.startSearch(place);
+  }
+
+  startSearch(place){
     geocode(place)
       .then(({ status, address, location }) => {
         switch (status) {
@@ -63,6 +75,7 @@ export default class SearchPage extends React.Component {
         this.setState({ hotels: sortedHotels(hotels, this.state.sortKey) })
       })
   }
+
   handleSortKeyChange(sortKey){
     console.log(sortKey);
     this.setState({ sortKey, hotels: sortedHotels(this.state.hotels, sortKey) })
