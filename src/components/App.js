@@ -1,5 +1,5 @@
 import React from 'react';
-import SearchPage from '../containers/SearchPage';
+import SearchPage from '../components/SearchPage';
 import AboutPage from './AboutPage';
 import Grid from 'material-ui/Grid';
 

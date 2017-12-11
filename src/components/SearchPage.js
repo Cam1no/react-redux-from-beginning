@@ -1,17 +1,17 @@
 import React from 'react';
-import GeocodeResult from '../components/GeocodeResult';
-import SearchForm from '../components/SearchForm';
-import Map from '../components/Map';
+import GeocodeResult from './GeocodeResult';
+import SearchForm from '../containers/SearchForm';
+import Map from './Map';
 import { geocode } from '../domain/Geocoder'
 import { searchHotelByLocation } from '../domain/HotelRepository'
 import Grid from 'material-ui/Grid';
-import HotelsTable from '../components/HotelsTable'
+import HotelsTable from './HotelsTable'
 import _ from 'lodash';
 import queryString from 'query-string';
 
 const sortedHotels = (hotels, sortKey) => _.sortBy(hotels, h => h[sortKey]);
 
-export default class SearchPage extends React.Component {
+export class SearchPage extends React.Component {
   constructor(props){
     super(props)
     this.state = {
@@ -31,16 +31,10 @@ export default class SearchPage extends React.Component {
   }
 
   componentDidMount() {
-    this.unsubscribe = this.props.store.subscribe(() => {
-      this.forceUpdate();
-    });
     // const place = this.getPlaceParam();
     // if (place && place.length > 0){
     //   this.startSearch(place);
     // }
-  }
-  componentWillUnmount() {
-    this.unsubscribe();
   }
 
   getPlaceParam() {
@@ -95,20 +89,14 @@ export default class SearchPage extends React.Component {
     console.log(sortKey);
     this.setState({ sortKey, hotels: sortedHotels(this.state.hotels, sortKey) })
   }
-  handleChangePlace(e){
-    e.preventDefault();
-    this.props.store.dispatch({ type: 'CHANGE_PLACE', place: e.target.value })
-  }
 
   render() {
-    const state = this.props.store.getState();
+    console.log(this.props);
     return (
       <div style={ { textAlign: 'center'} }>
         <h1>ホテル検索</h1>
         <SearchForm
           onSubmit={(e) => this.handlePlaceSubmit(e)}
-          place={state.place}
-          onChangePlace={e => this.handleChangePlace(e)}
         />
         <GeocodeResult
           address={this.state.address}
@@ -133,3 +121,5 @@ export default class SearchPage extends React.Component {
     );
   }
 }
+
+export default SearchPage;
