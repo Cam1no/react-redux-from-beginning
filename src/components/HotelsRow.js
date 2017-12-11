@@ -6,9 +6,9 @@ export const HotelsRow = ({ hotel }) => {
     <tr>
       <td><img src={hotel.thumbnail} alt={hotel.name}/></td>
       <td><a href={hotel.url} target='_blank'>{hotel.name}</a></td>
-      <td>{hotel.minPrice}</td>
-      <td>{hotel.reviewAverage}</td>
-      <td>{hotel.reviewCount}</td>
+      <td>{hotel.minPrice ? `${hotel.minPrice}円` : '空室なし'}</td>
+      <td>{hotel.reviewAverage ? hotel.reviewAverage : 0}</td>
+      <td>{hotel.reviewCount ? hotel.reviewCount : 0}</td>
       <td>{hotel.distance}</td>
     </tr>
   );
@@ -22,9 +22,9 @@ HotelsRow.propTypes = {
     thumbnail: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     url: PropTypes.string.isRequired,
-    minPrice: PropTypes.string.isRequired,
-    reviewAverage: PropTypes.number.isRequired,
-    reviewCount: PropTypes.number.isRequired,
+    minPrice: PropTypes.number,
+    reviewAverage: PropTypes.number,
+    reviewCount: PropTypes.number,
     distance: PropTypes.number.isRequired,
   }).isRequired,
 };

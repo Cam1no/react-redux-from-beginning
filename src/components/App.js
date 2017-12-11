@@ -21,9 +21,9 @@ export default class App extends React.Component {
         lng: 139.745433,
       },
       hotels: [
-        { id: 12, name: 'ホテルオークラ', url: 'http://google.com', minPrice: '空室なし', thumbnail: '', reviewAverage: 1, reviewCount: 1, distance: 100},
-        { id: 1212, name: 'アパホテル', url: 'http://google.com', minPrice: '空室なし', thumbnail: '', reviewAverage: 1, reviewCount: 1, distance: 100},
-        { id: 1243, name: 'ロワジールホテル', url: 'http://google.com', minPrice: '空室なし', thumbnail: '', reviewAverage: 1, reviewCount: 1, distance: 100},
+        { id: 12, name: 'ホテルオークラ', url: 'http://google.com', minPrice: 0, thumbnail: '', reviewAverage: 1, reviewCount: 1, distance: 100},
+        { id: 1212, name: 'アパホテル', url: 'http://google.com', minPrice: 0, thumbnail: '', reviewAverage: 1, reviewCount: 1, distance: 100},
+        { id: 1243, name: 'ロワジールホテル', url: 'http://google.com', minPrice: 0, thumbnail: '', reviewAverage: 1, reviewCount: 1, distance: 100},
       ],
       sortKey: 'minPrice',
     }
