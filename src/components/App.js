@@ -6,6 +6,9 @@ import { geocode } from '../domain/Geocoder'
 import { searchHotelByLocation } from '../domain/HotelRepository'
 import Grid from 'material-ui/Grid';
 import HotelsTable from './HotelsTable'
+import _ from 'lodash';
+
+const sortedHotels = (hotels, sortKey) => _.sortBy(hotels, h => h[sortKey]);
 
 export default class App extends React.Component {
   constructor(props){
@@ -22,6 +25,7 @@ export default class App extends React.Component {
         { id: 1212, name: 'アパホテル', url: 'http://google.com', minPrice: '空室なし', thumbnail: '', reviewAverage: 1, reviewCount: 1, distance: 100},
         { id: 1243, name: 'ロワジールホテル', url: 'http://google.com', minPrice: '空室なし', thumbnail: '', reviewAverage: 1, reviewCount: 1, distance: 100},
       ],
+      sortKey: 'minPrice',
     }
   }
 
@@ -54,7 +58,7 @@ export default class App extends React.Component {
         return [];
       })
       .then((hotels) => {
-        this.setState({ hotels })
+        this.setState({ hotels: sortedHotels(hotels, this.state.sortKey) })
       })
   }
 
