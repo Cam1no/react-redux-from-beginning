@@ -61,10 +61,14 @@ export default class App extends React.Component {
         this.setState({ hotels: sortedHotels(hotels, this.state.sortKey) })
       })
   }
+  handleSortKeyChange(sortKey){
+    console.log(sortKey);
+    this.setState({ sortKey, hotels: sortedHotels(this.state.hotels, sortKey) })
+  }
 
   render() {
     return (
-      <div style={ { textAlign: 'center', cursor: 'none' } }>
+      <div style={ { textAlign: 'center'} }>
         <h1>緯度経度検索</h1>
         <SearchForm onSubmit={place => this.handlePlaceSubmit(place)}/>
         <GeocodeResult
@@ -78,7 +82,11 @@ export default class App extends React.Component {
             </Grid>
             <Grid item xs={6}>
               <h2>ホテル検索結果</h2>
-              <HotelsTable hotels={this.state.hotels}/>
+              <HotelsTable
+                hotels={this.state.hotels}
+                sortKey={this.state.sortKey}
+                onSort={(sortKey) => this.handleSortKeyChange(sortKey)}
+              />
             </Grid>
           </Grid>
         </div>

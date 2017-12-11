@@ -1,18 +1,49 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import HotelsRow from './HotelsRow'
+import HotelsClickableTh from './HotelsClickableTh';
 
-export const HotelsTable = ({ hotels }) => {
+export const HotelsTable = ({ hotels, sortKey, onSort }) => {
   return (
     <table>
       <thead>
         <tr>
-          <th>サムネイル</th>
-          <th>ホテル名</th>
-          <th>料金</th>
-          <th>平均レビュー</th>
-          <th>レビュー数</th>
-          <th>距離</th>
+          <HotelsClickableTh
+            label='サムネイル'
+            sortKey='thumbnail'
+            isSelected = { sortKey === 'thumbnail' }
+            onSort={key => onSort(key)}
+          />
+          <HotelsClickableTh
+            label='ホテル名'
+            sortKey='name'
+            isSelected = { sortKey === 'name' }
+            onSort={key => onSort(key)}
+          />
+          <HotelsClickableTh
+            label='料金'
+            sortKey='minPrice'
+            isSelected = { sortKey === 'minPrice' }
+            onSort={key => onSort(key)}
+          />
+          <HotelsClickableTh
+            label='レビュー'
+            sortKey='reviewAverage'
+            isSelected = { sortKey === 'reviewAverage' }
+            onSort={key => onSort(key)}
+          />
+          <HotelsClickableTh
+            label='レビュー数'
+            sortKey='reviewCount'
+            isSelected = { sortKey === 'reviewCount' }
+            onSort={key => onSort(key)}
+          />
+          <HotelsClickableTh
+            label='距離'
+            sortKey='distance'
+            isSelected = { sortKey === 'distance' }
+            onSort={key => onSort(key)}
+          />
         </tr>
       </thead>
       <tbody>
@@ -28,4 +59,6 @@ export default HotelsTable;
 
 HotelsTable.propTypes = {
   hotels: PropTypes.arrayOf(PropTypes.any),
+  sortKey: PropTypes.string,
+  onSort: PropTypes.func.isRequired,
 };
