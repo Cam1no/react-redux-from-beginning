@@ -6,7 +6,14 @@ export const HotelsTable = ({ hotels }) => {
   return (
     <table>
       <thead>
-        <tr><th>サムネイル</th><th>ホテル名</th><th>料金</th></tr>
+        <tr>
+          <th>サムネイル</th>
+          <th>ホテル名</th>
+          <th>料金</th>
+          <th>平均レビュー</th>
+          <th>レビュー数</th>
+          <th>距離</th>
+        </tr>
       </thead>
       <tbody>
         {hotels.map(hotel => {

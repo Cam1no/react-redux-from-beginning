@@ -30,5 +30,5 @@ export default class SearchFrom extends React.Component {
 }
 
 SearchFrom.propTypes = {
-  onSubmit: PropTypes.func.inRequired,
+  onSubmit: PropTypes.func.isRequired,
 };

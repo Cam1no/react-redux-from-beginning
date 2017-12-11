@@ -18,9 +18,9 @@ export default class App extends React.Component {
         lng: 139.745433,
       },
       hotels: [
-        { id: 12, name: 'ホテルオークラ', url: 'http://google.com', minPrice: 0, thumbnail: ''},
-        { id: 1212, name: 'アパホテル', url: 'http://google.com', minPrice: 0, thumbnail: ''},
-        { id: 1243, name: 'ロワジールホテル', url: 'http://google.com', minPrice: 0, thumbnail: ''},
+        { id: 12, name: 'ホテルオークラ', url: 'http://google.com', minPrice: '空室なし', thumbnail: '', reviewAverage: 1, reviewCount: 1, distance: 100},
+        { id: 1212, name: 'アパホテル', url: 'http://google.com', minPrice: '空室なし', thumbnail: '', reviewAverage: 1, reviewCount: 1, distance: 100},
+        { id: 1243, name: 'ロワジールホテル', url: 'http://google.com', minPrice: '空室なし', thumbnail: '', reviewAverage: 1, reviewCount: 1, distance: 100},
       ],
     }
   }
@@ -67,7 +67,7 @@ export default class App extends React.Component {
           address={this.state.address}
           location={this.state.location}
         />
-        <div style={{width: '1000px', margin: 'auto'}}>
+        <div style={{width: '1100px', margin: 'auto'}}>
           <Grid container>
             <Grid item xs={6}>
               <Map location={ this.state.location }/>
@@ -82,6 +82,3 @@ export default class App extends React.Component {
     );
   }
 }
-
-App.propTypes = {
-};
