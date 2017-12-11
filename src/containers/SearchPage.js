@@ -1,11 +1,11 @@
 import React from 'react';
-import GeocodeResult from './GeocodeResult';
-import SearchForm from './SearchForm';
-import Map from './Map';
+import GeocodeResult from '../components/GeocodeResult';
+import SearchForm from '../components/SearchForm';
+import Map from '../components/Map';
 import { geocode } from '../domain/Geocoder'
 import { searchHotelByLocation } from '../domain/HotelRepository'
 import Grid from 'material-ui/Grid';
-import HotelsTable from './HotelsTable'
+import HotelsTable from '../components/HotelsTable'
 import _ from 'lodash';
 import queryString from 'query-string';
 
@@ -31,10 +31,16 @@ export default class SearchPage extends React.Component {
   }
 
   componentDidMount() {
-    const place = this.getPlaceParam();
-    if (place && place.length > 0){
-      this.startSearch(place);
-    }
+    this.unsubscribe = this.props.store.subscribe(() => {
+      this.forceUpdate();
+    });
+    // const place = this.getPlaceParam();
+    // if (place && place.length > 0){
+    //   this.startSearch(place);
+    // }
+  }
+  componentWillUnmount() {
+    this.unsubscribe();
   }
 
   getPlaceParam() {
@@ -89,18 +95,20 @@ export default class SearchPage extends React.Component {
     console.log(sortKey);
     this.setState({ sortKey, hotels: sortedHotels(this.state.hotels, sortKey) })
   }
-  handleChangePlace(place){
-    this.setState({place});
+  handleChangePlace(e){
+    e.preventDefault();
+    this.props.store.dispatch({ type: 'CHANGE_PLACE', place: e.target.value })
   }
 
   render() {
+    const state = this.props.store.getState();
     return (
       <div style={ { textAlign: 'center'} }>
         <h1>ホテル検索</h1>
         <SearchForm
           onSubmit={(e) => this.handlePlaceSubmit(e)}
-          place={this.state.place}
-          onChangePlace={place => this.handleChangePlace(place)}
+          place={state.place}
+          onChangePlace={e => this.handleChangePlace(e)}
         />
         <GeocodeResult
           address={this.state.address}
