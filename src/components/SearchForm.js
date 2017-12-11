@@ -2,24 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export default class SearchFrom extends React.Component {
-  constructor(props){
-    super(props);
-  }
-
-  handleChangePlace(place) {
-    this.setState({ place })
-  }
-
-  handleSubmit(e) {
-    // イベントがキャンセル可能である場合、上位ノードへのイベントの 伝播 (propagation) を止めずに、そのイベントをキャンセルします。
-    e.preventDefault();
-    this.props.onSubmit(this.state.place)
-  }
-
   render() {
     return (
-      <form onSubmit={(e) => this.handleSubmit(e)}>
-        <input type="text" value={this.props.place} onChange={(e) => this.handleChangePlace(e.target.value)}/>
+      <form onSubmit={(e) => this.props.onSubmit(e)}>
+        <input
+          type="text"
+          value={this.props.place}
+          onChange={(e) => this.props.onChangePlace(e.target.value)}
+        />
         <input type="submit" value="検索"/>
       </form>
     );
@@ -28,4 +18,6 @@ export default class SearchFrom extends React.Component {
 
 SearchFrom.propTypes = {
   onSubmit: PropTypes.func.isRequired,
+  onChangePlace: PropTypes.func.isRequired,
+  place: PropTypes.string.isRequired,
 };
