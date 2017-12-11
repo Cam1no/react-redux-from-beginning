@@ -35,6 +35,7 @@ export default class SearchPage extends React.Component {
     const place = params.place;
     if (place && place.length > 0){
       this.startSearch(place);
+      this.setState({ place })
     }
   }
 
@@ -85,7 +86,7 @@ export default class SearchPage extends React.Component {
     return (
       <div style={ { textAlign: 'center'} }>
         <h1>ホテル検索</h1>
-        <SearchForm onSubmit={place => this.handlePlaceSubmit(place)}/>
+        <SearchForm onSubmit={place => this.handlePlaceSubmit(place)} place={this.state.place}/>
         <GeocodeResult
           address={this.state.address}
           location={this.state.location}

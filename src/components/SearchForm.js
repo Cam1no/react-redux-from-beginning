@@ -3,10 +3,7 @@ import PropTypes from 'prop-types';
 
 export default class SearchFrom extends React.Component {
   constructor(props){
-    super(props)
-    this.state = {
-      place: 'Tokyo'
-    }
+    super(props);
   }
 
   handleChangePlace(place) {
@@ -22,7 +19,7 @@ export default class SearchFrom extends React.Component {
   render() {
     return (
       <form onSubmit={(e) => this.handleSubmit(e)}>
-        <input type="text" value={this.state.place} onChange={(e) => this.handleChangePlace(e.target.value)}/>
+        <input type="text" value={this.props.place} onChange={(e) => this.handleChangePlace(e.target.value)}/>
         <input type="submit" value="検索"/>
       </form>
     );
