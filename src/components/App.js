@@ -17,8 +17,8 @@ export default class App extends React.Component {
         <div>
           <Grid container>
             <Grid item xs={3}>
-              <div style={{ width: '60%', 'background-color': '#dcdddf', height: '1000px', padding: '50px' }}>
-                <ul style={{ 'list-style': 'none' }}>
+              <div style={{ width: '60%', backgroundColor: '#dcdddf', height: '1000px', padding: '50px' }}>
+                <ul style={{ listStyle: 'none' }}>
                   <li><Link to="/">Top</Link></li>
                   <li><Link to="/about">About</Link></li>
                 </ul>

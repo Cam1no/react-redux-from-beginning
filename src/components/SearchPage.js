@@ -12,6 +12,7 @@ const sortedHotels = (hotels, sortKey) => _.sortBy(hotels, h => h[sortKey]);
 
 export default class SearchPage extends React.Component {
   constructor(props){
+    console.log(props);
     super(props)
     this.state = {
       place: '東京タワー',
@@ -40,6 +41,7 @@ export default class SearchPage extends React.Component {
   }
 
   handlePlaceSubmit(place){
+    this.props.history.push(`/?query=${place}`);
     geocode(place)
       .then(({ status, address, location }) => {
         switch (status) {
