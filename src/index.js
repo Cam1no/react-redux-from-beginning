@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/App';
-import SearchPage from './containers/SearchPage';
 import registerServiceWorker from './registerServiceWorker';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import { createStore, applyMiddleware } from 'redux';
@@ -16,10 +15,7 @@ injectTapEventPlugin();
 
 ReactDOM.render(
   <Provider store={store}>
-    <SearchPage
-      history={window.history}
-      location={window.location}
-    />
+    <App />
   </Provider>,
   document.getElementById('root')
 );

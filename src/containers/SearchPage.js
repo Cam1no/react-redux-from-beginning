@@ -4,24 +4,18 @@ import SearchForm from './SearchForm';
 import Map from '../components/Map';
 import Grid from 'material-ui/Grid';
 import HotelsTable from '../components/HotelsTable'
-import queryString from 'query-string';
 import { connect } from 'react-redux';
+import { startSearch } from '../actions';
 
 export class SearchPage extends React.Component {
-  getPlaceParam() {
-    const params = queryString.parse(this.props.location.search);
-    const place = params.place;
-    if (place && place.length > 0){
-      return place;
-    }
-    return null;
+  componentDidMount() {
+    this.props.dispatch(startSearch())
   }
-
   render() {
     return (
       <div style={ { textAlign: 'center'} }>
         <h1>ホテル検索</h1>
-        <SearchForm/>
+        <SearchForm history={this.props.history}/>
         <GeocodeResult
           address={this.props.geocodeResult.address}
           location={this.props.geocodeResult.location}

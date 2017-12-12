@@ -10,6 +10,7 @@ export class SearchFrom extends React.Component {
       <form
         onSubmit={e => {
           e.preventDefault();
+          this.props.history.push(`/?place=${this.props.place}`);
           this.props.startSearch();
         }}
       >
