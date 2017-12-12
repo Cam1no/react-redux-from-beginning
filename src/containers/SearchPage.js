@@ -4,11 +4,8 @@ import SearchForm from './SearchForm';
 import Map from '../components/Map';
 import Grid from 'material-ui/Grid';
 import HotelsTable from '../components/HotelsTable'
-import _ from 'lodash';
 import queryString from 'query-string';
 import { connect } from 'react-redux';
-
-const sortedHotels = (hotels, sortKey) => _.sortBy(hotels, h => h[sortKey]);
 
 export class SearchPage extends React.Component {
   constructor(props){
@@ -60,14 +57,7 @@ export class SearchPage extends React.Component {
   //   this.props.history.push(`/?place=${this.state.place}`);
   // }
 
-
-  handleSortKeyChange(sortKey){
-    console.log(sortKey);
-    this.setState({ sortKey, hotels: sortedHotels(this.state.hotels, sortKey) })
-  }
-
   render() {
-    console.log(this.props);
     return (
       <div style={ { textAlign: 'center'} }>
         <h1>ホテル検索</h1>
@@ -83,11 +73,7 @@ export class SearchPage extends React.Component {
             </Grid>
             <Grid item xs={6}>
               <h2>ホテル検索結果</h2>
-              <HotelsTable
-                hotels={this.state.hotels}
-                sortKey={this.state.sortKey}
-                onSort={(sortKey) => this.handleSortKeyChange(sortKey)}
-              />
+              <HotelsTable />
             </Grid>
           </Grid>
         </div>

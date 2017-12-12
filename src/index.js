@@ -4,11 +4,13 @@ import App from './components/App';
 import SearchPage from './containers/SearchPage';
 import registerServiceWorker from './registerServiceWorker';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import reducer from './reducers/'
 import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
 
-const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)));
 
 injectTapEventPlugin();
 
